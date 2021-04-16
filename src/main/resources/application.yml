@@ -1,0 +1,20 @@
+logging:
+  level:
+    ROOT: INFO
+    
+# Database connection configuration
+spring:
+  application:
+    name: ts-sv-api-person
+  main:
+    banner-mode: "off"
+  datasource:
+  # To access in memory DB for debug purpose, change "mem" to "file" in local machine.
+    url: jdbc:h2:mem:~/test;DB_CLOSE_ON_EXIT=FALSE 
+    username: test
+    password: test
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database: H2
