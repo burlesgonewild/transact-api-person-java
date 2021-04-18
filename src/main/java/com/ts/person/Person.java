@@ -18,6 +18,19 @@ public class Person implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
+    private String zipCode;
+
+    public Person(){
+        // for ORM serialization
+    }
+
+    public Person(PersonProcessObject personProcessObject){
+        firstName = personProcessObject.getFirstName();
+        lastName = personProcessObject.getLastName();
+        email = personProcessObject.getEmail();
+        zipCode = personProcessObject.getZipCode();
+
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,4 +70,12 @@ public class Person implements Serializable {
         this.email = email;
     }
 
+    @Column(name = "zipcode")
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
 }
