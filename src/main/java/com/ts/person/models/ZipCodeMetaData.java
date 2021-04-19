@@ -1,12 +1,12 @@
-package com.ts.person;
+package com.ts.person.models;
 
-public class ZipMetaData {
+public class ZipCodeMetaData {
 
     public String country;
     public String state;
     public String city;
 
-    public ZipMetaData(){
+    public ZipCodeMetaData(){
 
     }
 

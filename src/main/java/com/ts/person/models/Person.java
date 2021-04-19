@@ -1,4 +1,4 @@
-package com.ts.person;
+package com.ts.person.models;
 
 import java.io.Serializable;
 

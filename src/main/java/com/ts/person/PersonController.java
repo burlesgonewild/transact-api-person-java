@@ -1,9 +1,10 @@
 package com.ts.person;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javassist.NotFoundException;
+import com.ts.person.models.Person;
+import com.ts.person.models.PersonProcessObject;
+import com.ts.person.models.ZipCodeMetaData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.codec.ClientCodecConfigurer;
@@ -90,13 +91,13 @@ public class PersonController {
     }
 
     private void setPersonCityFromZipcode(String zipcode, PersonProcessObject personProcessObject) {
-        ZipMetaData zipMetaData = ZIP_STATIC_CLIENT.get()
+        ZipCodeMetaData zipCodeMetaData = ZIP_STATIC_CLIENT.get()
                 .uri(zipcode)
                 .retrieve()
-                .bodyToMono(ZipMetaData.class)
+                .bodyToMono(ZipCodeMetaData.class)
                 .block();
 
-        personProcessObject.setCity(zipMetaData.getCity());
+        personProcessObject.setCity(zipCodeMetaData.getCity());
 
     }
 
