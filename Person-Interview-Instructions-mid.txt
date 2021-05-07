@@ -6,4 +6,3 @@ Create a branch with your first initial followed by your last name, (e.g., 'jdoe
 2. Store an additional field 'zipcode' with the Person data.
 3. Resolve the city of the Person.zipcode using this API, http://ziptasticapi.com. The city should NOT be persisted but should be returned with the Person response.
 4. While retrieving all people, the list should be sorted by Person.lastName ascending.
-5. Implement a delete endpoint to remove a Person.
