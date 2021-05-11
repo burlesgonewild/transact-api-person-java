@@ -1,23 +1,27 @@
 package com.ts.person;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import org.springframework.validation.annotation.Validated;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.io.Serializable;
+import java.util.Objects;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "person")
+@Validated
 public class Person implements Serializable {
     private static final long serialVersionUID = 1323272533746093028L;
 
     private Long id;
     private String firstName;
     private String lastName;
+    @NotBlank(message = "An email is required")
     private String email;
+    private String zipCode;
+    private String city;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,7 +52,7 @@ public class Person implements Serializable {
         this.lastName = lastName;
     }
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     public String getEmail() {
         return email;
     }
@@ -57,4 +61,35 @@ public class Person implements Serializable {
         this.email = email;
     }
 
+    @Column(name = "zipcode")
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    @JsonInclude
+    @Transient
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(id, person.id) && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(email, person.email) && Objects.equals(zipCode, person.zipCode) && Objects.equals(city, person.city);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, email, zipCode, city);
+    }
 }
