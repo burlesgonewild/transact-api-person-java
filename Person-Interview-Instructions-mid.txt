@@ -1,5 +1,4 @@
 Exercise:
-Checkout the sample repo: git clone git@bitbucket.org:transact/ts-java-api-person.git.
 Create a branch with your first initial followed by your last name, (e.g., 'jdoe').
 
 Commit the following changes to your branch:
